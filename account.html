@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет | Моя семья – мой космос</title>
+    <style>
+        /* Общие стили (аналогичные index.html) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+        
+        a:hover {
+            color: #81C784;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #388E3C;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #4CAF50;
+        }
+        
+        /* Шапка сайта */
+        header {
+            background-color: #1E1E1E;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: #e0e0e0;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #4CAF50;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: #e0e0e0;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        /* Основной контент личного кабинета */
+        .account-section {
+            padding: 50px 0;
+            background-color: #1E1E1E;
+        }
+        
+        .account-container {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .account-sidebar {
+            width: 250px;
+            background-color: #2C2C2C;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .account-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .account-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid #4CAF50;
+        }
+        
+        .account-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .account-email {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        .account-menu {
+            list-style: none;
+        }
+        
+        .account-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .account-menu a {
+            display: block;
+            padding: 8px 10px;
+            color: #e0e0e0;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .account-menu a:hover, .account-menu a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .logout-btn {
+            display: block;
+            width: 100%;
+            padding: 8px 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background-color: #d32f2f;
+        }
+        
+        .account-content {
+            flex: 1;
+            background-color: #2C2C2C;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .account-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        
+        /* Форма записи на конкурс */
+        .booking-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background-color: #3C3C3C;
+            color: #e0e0e0;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+        }
+        
+        /* Подвал сайта */
+        footer {
+            background-color: #121212;
+            padding: 40px 0 20px;
+            color: #aaa;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-contacts a {
+            display: block;
+            margin-bottom: 10px;
+            color: #aaa;
+        }
+        
+        .footer-contacts a:hover {
+            color: #4CAF50;
+        }
+        
+        .footer-nav ul {
+            list-style: none;
+        }
+        
+        .footer-nav ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-nav ul li a {
+            color: #aaa;
+        }
+        
+        .footer-nav ul li a:hover {
+            color: #4CAF50;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .account-container {
+                flex-direction: column;
+            }
+            
+            .account-sidebar {
+                width: 100%;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .footer-nav ul li {
+                margin: 0 10px 8px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .account-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://i.pinimg.com/originals/10/a2/46/10a246d1ed5b1ee911c88e9fa34fff28.png" alt="Логотип 'Моя семья – мой космос'">
+                <span class="logo-text">Личный кабинет | Моя семья – мой космос</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="registration.html">Регистрация</a></li>
+                    <li><a href="account.html">Личный кабинет</a></li>
+                    <li><a href="schedule.html">Расписание</a></li>
+                    <li><a href="competition.html">Конкурсы</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <section class="account-section">
+        <div class="container">
+            <h2 class="section-title">Личный кабинет</h2>
+            <div class="account-container">
+                <!-- Боковое меню -->
+                <aside class="account-sidebar">
+                    <div class="account-info">
+                        <img src="https://avatars.githubusercontent.com/u/2891073?v=4" alt="Аватар пользователя" class="account-avatar">
+                        <div class="account-name">Ирина Иванова</div>
+                        <div class="account-email">irina@gmail.com</div>
+                    </div>
+                    <ul class="account-menu">
+                        <li><a href="#" class="active">Запись на конкурс</a></li>
+                        <li><a href="#">Мои записи</a></li>
+                        <li><a href="#">Настройки профиля</a></li>
+                        <li><a href="#">Моя семья</a></li>
+                    </ul>
+                    <button class="logout-btn">Выйти</button>
+                </aside>
+                
+                <!-- Основное содержимое -->
+                <main class="account-content">
+                    <h3 class="account-title">Запись на конкурс</h3>
+                    <form class="booking-form">
+                        <div class="form-group">
+                            <label for="competition">Конкурс</label>
+                            <select id="competition" required>
+                                <option value="" disabled selected>Выберите конкурс</option>
+                                <option value="1">Семейный портрет</option>
+                                <option value="2">Семейные традиции</option>
+                                <option value="3">Семейная кухня</option>
+                                <option value="4">Семейное древо</option>
+                                <option value="5">Семейный талант</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">Дата</label>
+                                <input type="date" id="date" value="2024-07-08" min="2024-07-08" max="2024-07-08" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Время</label>
+                                <select id="time" required>
+                                    <option value="" disabled selected>Выберите время</option>
+                                    <option value="9:00">9:00 - 10:00</option>
+                                    <option value="10:00">10:00 - 11:00</option>
+                                    <option value="11:00">11:00 - 12:00</option>
+                                    <option value="12:00">12:00 - 13:00</option>
+                                    <option value="13:00">13:00 - 14:00</option>
+                                    <option value="14:00">14:00 - 15:00</option>
+                                    <option value="15:00">15:00 - 16:00</option>
+                                    <option value="16:00">16:00 - 17:00</option>
+                                    <option value="17:00">17:00 - 18:00</option>
+                                    <option value="18:00">18:00 - 19:00</option>
+                                    <option value="19:00">19:00 - 20:00</option>
+                                    <option value="20:00">20:00 - 21:00</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="participants">Количество участников</label>
+                            <input type="number" id="participants" min="1" max="10" value="1" required>
+                        </div>
+                        
+                        <button type="submit" class="btn submit-btn">Записаться на конкурс</button>
+                    </form>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал сайта -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-contacts">
+                    <h3>Контакты</h3>
+                    <a href="tel:+74842234567">+7 (4842) 23-45-67</a>
+                    <a href="mailto:family@cosmos.ru">family@cosmos.ru</a>
+                </div>
+                <div class="footer-nav">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="index-light.html">Главная-светлая</a></li>
+                        <li><a href="registration.html">Регистрация</a></li>
+                        <li><a href="competition.html">Конкурс</a></li>
+                        <li><a href="account.html">Личный кабинет</a></li>
+                        <li><a href="404.html">Страница не найдена</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2024 "Моя семья – мой космос". Все права защищены.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

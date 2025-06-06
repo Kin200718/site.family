@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Описание конкурса | Моя семья – мой космос</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+        
+        a:hover {
+            color: #81C784;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #388E3C;
+        }
+        
+        /* Шапка сайта */
+        header {
+            background-color: #1E1E1E;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: #e0e0e0;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #4CAF50;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: #e0e0e0;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        /* Секция конкурса */
+        .competition-section {
+            padding: 50px 0;
+            background-color: #1E1E1E;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #4CAF50;
+        }
+        
+        .competition-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .competition-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .competition-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .competition-description {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .competition-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .meta-icon {
+            font-size: 1.5rem;
+            color: #4CAF50;
+        }
+        
+        .meta-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meta-label {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        .meta-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .rating {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .star {
+            color: #FFD700;
+            font-size: 1.5rem;
+            margin: 0 2px;
+        }
+        
+        .participate-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.2rem;
+        }
+        
+        /* Секция отзывов */
+        .reviews-section {
+            padding: 50px 0;
+            background-color: #121212;
+        }
+        
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .review {
+            padding: 20px;
+            background-color: #1E1E1E;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .review-author {
+            font-weight: bold;
+        }
+        
+        .review-date {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 3px;
+        }
+        
+        .review-text {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        /* Подвал сайта */
+        footer {
+            background-color: #121212;
+            padding: 40px 0 20px;
+            color: #aaa;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-contacts a {
+            display: block;
+            margin-bottom: 10px;
+            color: #aaa;
+        }
+        
+        .footer-contacts a:hover {
+            color: #4CAF50;
+        }
+        
+        .footer-nav ul {
+            list-style: none;
+        }
+        
+        .footer-nav ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-nav ul li a {
+            color: #aaa;
+        }
+        
+        .footer-nav ul li a:hover {
+            color: #4CAF50;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+        }
+        
+        /* Стили для печати */
+        @media print {
+            header, footer, .reviews-section, .btn {
+                display: none;
+            }
+            
+            .competition-image {
+                filter: grayscale(100%);
+            }
+            
+            .competition-section {
+                background-color: white !important;
+                color: black !important;
+                padding: 20px;
+            }
+            
+            .print-review {
+                display: block !important;
+                margin-top: 30px;
+                padding: 15px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+        }
+        
+        .print-review {
+            display: none;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .reviews-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .competition-meta {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .footer-nav ul li {
+                margin: 0 10px 8px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://i.pinimg.com/originals/10/a2/46/10a246d1ed5b1ee911c88e9fa34fff28.png" alt="Логотип 'Моя семья – мой космос'">
+                <span class="logo-text">Моя семья – мой космос</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="registration.html">Регистрация</a></li>
+                    <li><a href="account.html">Личный кабинет</a></li>
+                    <li><a href="schedule.html">Расписание</a></li>
+                    <li><a href="competition.html">Конкурсы</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Секция конкурса -->
+    <section class="competition-section">
+        <div class="container">
+            <div class="competition-content">
+                <h1 class="section-title">Семейный портрет</h1>
+                
+                <img src="https://avatars.mds.yandex.net/get-ydo/2428621/2a0000016f1305849ccfd8977bee0575e7a6/diploma" alt="Семейный портрет" class="competition-image">
+                
+                <div class="competition-meta">
+                    <div class="meta-item">
+                        <span class="meta-icon">★</span>
+                        <div class="meta-text">
+                            <span class="meta-label">Рейтинг</span>
+                            <span class="meta-value">4.2/5</span>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">👥</span>
+                        <div class="meta-text">
+                            <span class="meta-label">Участников</span>
+                            <span class="meta-value">127</span>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">📅</span>
+                        <div class="meta-text">
+                            <span class="meta-label">Дата проведения</span>
+                            <span class="meta-value">8 июля 2024</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rating">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">☆</span>
+                </div>
+                
+                <div class="competition-description">
+                    <p>Конкурс "Семейный портрет" - это прекрасная возможность запечатлеть вашу дружную семью в самом выгодном свете! Мы приглашаем семьи всех составов и возрастов принять участие в этом творческом соревновании.</p>
+                    <p>Для участия необходимо подготовить фотографию вашей семьи в любом стиле - это может быть студийная съемка, домашние кадры или даже художественная постановка. Главное - передать дух вашей семьи, ее уникальность и теплоту отношений.</p>
+                    <p>Лучшие работы будут отобраны профессиональным жюри и представлены на выставке в городской галерее. Победители получат ценные призы и возможность профессиональной семейной фотосессии.</p>
+                    <p>Технические требования: фотографии должны быть в формате JPG или PNG, разрешение не менее 1920x1080 пикселей. Каждая семья может представить до 3 работ.</p>
+                </div>
+                
+                <a href="account.html" class="btn participate-btn">Участвовать</a>
+                
+                <div class="print-review">
+                    <h3>Отзыв участника:</h3>
+                    <p>"Мы участвовали в конкурсе всей семьей и получили массу удовольствия! Организация на высшем уровне, атмосфера очень дружелюбная. Обязательно придем еще!" - Анна, участница конкурса.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция отзывов -->
+    <section class="reviews-section">
+        <div class="container">
+            <h2 class="section-title">Отзывы участников</h2>
+            <div class="reviews-container">
+                <div class="review">
+                    <div class="review-header">
+                        <img src="https://avatars.githubusercontent.com/u/2891073?v=4" alt="Анна" class="review-avatar">
+                        <div>
+                            <div class="review-author">Анна</div>
+                            <div class="review-date">15 мая 2024</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Мы с семьей участвовали в конкурсе "Семейный портрет" и получили массу удовольствия! Организация на высшем уровне, атмосфера очень дружелюбная. Обязательно придем еще!</p>
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">☆</span>
+                    </div>
+                </div>
+                <div class="review">
+                    <div class="review-header">
+                        <img src="https://avatars.githubusercontent.com/u/2891073?v=4" alt="Иван" class="review-avatar">
+                        <div>
+                            <div class="review-author">Иван</div>
+                            <div class="review-date">3 мая 2024</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Отличный конкурс, который помог нам по-новому взглянуть на нашу семью. Дети были в восторге от процесса подготовки, а результат превзошел все ожидания!</p>
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал сайта -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-contacts">
+                    <h3>Контакты</h3>
+                    <a href="tel:+74842234567">+7 (4842) 23-45-67</a>
+                    <a href="mailto:family@cosmos.ru">family@cosmos.ru</a>
+                </div>
+                <div class="footer-nav">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="index-light.html">Главная-светлая</a></li>
+                        <li><a href="registration.html">Регистрация</a></li>
+                        <li><a href="competition.html">Конкурс</a></li>
+                        <li><a href="account.html">Личный кабинет</a></li>
+                        <li><a href="404.html">Страница не найдена</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2024 "Моя семья – мой космос". Все права защищены.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
